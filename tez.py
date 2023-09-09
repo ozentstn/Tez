@@ -57,6 +57,7 @@ removeNoktalama=[x.translate(noktalama) for x in removeNumbers]
 sw=stopwords.words("turkish")
 stopWords=[x for x in removeNoktalama if x not in sw]
 
+
 #tokenization
 #lemmatization: zemberek/ snowballStemmer : kök bulma
 from nltk.stem.porter import PorterStemmer
@@ -64,5 +65,8 @@ p_stemmer=PorterStemmer
 tr_stemmer=snowballstemmer.stemmer('stemmer')
 stemmedWords=[tr_stemmer.stem(i) for i in stopWords]
 print(removeNoktalama)
+
+
+
 
 
