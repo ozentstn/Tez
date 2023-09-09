@@ -1,5 +1,4 @@
 from turtledemo.round_dance import stop
-
 import content
 import nltk.data
 import pypyodbc
@@ -11,12 +10,11 @@ import numpy as np
 import itertools
 import math
 import datetime
-
 import snowballstemmer
 import spacy
 import docx
 from bs4 import BeautifulSoup
-from nltk.stem import PorterStemmer
+from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
 from nltk.tokenize import word_tokenize
@@ -56,16 +54,16 @@ removeNoktalama=[x.translate(noktalama) for x in removeNumbers]
 #stopwords silinmesi
 sw=stopwords.words("turkish")
 stopWords=[x for x in removeNoktalama if x not in sw]
-
-
 #tokenization
 #lemmatization: zemberek/ snowballStemmer : kök bulma
-from nltk.stem.porter import PorterStemmer
+texts=[]
 p_stemmer=PorterStemmer
-tr_stemmer=snowballstemmer.stemmer('stemmer')
-stemmedWords=[tr_stemmer.stem(i) for i in stopWords]
-print(removeNoktalama)
-
+tr_stemmer=snowballstemmer.stemmer('turkish')
+"""for i in stopWords:
+   stemmed=[tr_stemmer.stemWord(i) for i in stopWords if not i in sw]
+   stemmed_tokens=[i for i in stemmed if not i in sw]
+   #texts.append(stemmed_tokens)"""
+print(stopWords)
 
 
 
