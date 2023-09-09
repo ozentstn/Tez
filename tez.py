@@ -11,6 +11,8 @@ import numpy as np
 import itertools
 import math
 import datetime
+
+import snowballstemmer
 import spacy
 import docx
 from bs4 import BeautifulSoup
@@ -54,14 +56,13 @@ removeNoktalama=[x.translate(noktalama) for x in removeNumbers]
 #stopwords silinmesi
 sw=stopwords.words("turkish")
 stopWords=[x for x in removeNoktalama if x not in sw]
-#frekansı az olan kelimelerin silinmesi
-"""delete=pd.Series(" ".join(stopWords).split()).value_counts()<5 #sayısı 5 ten küçük olanlar
-deleteFewWords=stopWords(lambda x:" ".join(x for x in x.split() if x not in delete))"""
+
 #tokenization
-nltk.download("punkt")
-import textblob
-from textblob import TextBlob
-TextBlob(stopWords)
-print(deleteFewWords)
+#lemmatization: zemberek/ snowballStemmer : kök bulma
+from nltk.stem.porter import PorterStemmer
+p_stemmer=PorterStemmer
+tr_stemmer=snowballstemmer.stemmer('stemmer')
+stemmedWords=[tr_stemmer.stem(i) for i in stopWords]
+print(removeNoktalama)
 
 
